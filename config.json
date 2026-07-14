@@ -1,0 +1,19 @@
+{
+    "train_dir": "/root/.cache/kagglehub/datasets/tolgadincer/labeled-chest-xray-images/versions/1/chest_xray/train",
+    "test_dir": "/root/.cache/kagglehub/datasets/tolgadincer/labeled-chest-xray-images/versions/1/chest_xray/test",
+    "classes": [
+        "NORMAL",
+        "PNEUMONIA"
+    ],
+    "img_size": 28,
+    "val_split": 0.03,
+    "n_features": 4,
+    "n_qubits": 4,
+    "n_shots": null,
+    "batch_size": 10,
+    "epochs": 20,
+    "lr_cnn": 0.001,
+    "lr_quantum": 0.01,
+    "weight_decay": 0.0001,
+    "max_samples": 1349
+}
