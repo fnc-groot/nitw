@@ -425,9 +425,11 @@ def main():
     else:
         device = torch.device("cpu")
         print("CUDA unavailable. Using CPU fallback.")
+        print("STEP A")
 
     try:
         config = load_config(base_dir)
+        print("STEP B")
     except FileNotFoundError as exc:
         print(f"Error: {exc}")
         return 1
@@ -439,6 +441,7 @@ def main():
     std = [0.229, 0.224, 0.225]
 
     qc, theta_params, alpha_params, phi_params, lam_params = build_pqc(n_qubits)
+    print("STEP C")
     z_observables = build_z_observables(n_qubits)
 
     model = HQNNModel(
@@ -452,10 +455,12 @@ def main():
         z_obs=z_observables,
         img_size=img_size,
     )
+    print("STEP D")
     model = model.to(device)
 
     try:
         model = load_checkpoint(model, checkpoint_path, device)
+        print("STEP E")
     except Exception as exc:
         print(f"Error: unable to load checkpoint: {exc}")
         return 1
@@ -465,7 +470,9 @@ def main():
     with torch.no_grad():
         try:
             input_tensor = preprocess_image(image_path, img_size, mean, std).to(device)
+            print("STEP F")
             probs = model(input_tensor)
+            print("STEP G")
         except Exception as exc:
             print(f"Error: invalid image preprocessing: {exc}")
             return 1
