@@ -334,11 +334,10 @@ class HQNNModel(nn.Module):
         self.sigmoid = nn.Sigmoid()
 
     def forward(self, x):
+        print("CNN START")
         features = self.cnn(x)
-        z_vals = self.quantum(features)
-        logit = self.classical_head(z_vals)
-        prob = self.sigmoid(logit)
-        return prob.squeeze(1)
+        print("CNN DONE")
+        return torch.zeros((x.shape[0],), device=x.device)
 
 
 def load_config(base_dir: Path):
@@ -489,6 +488,7 @@ def main():
     print(f"Confidence : {confidence:.2f}%")
     print("----------------------------------")
     return 0
+
 
 if __name__ == "__main__":
     raise SystemExit(main())
